@@ -51,6 +51,11 @@ interface ExpandableSectionProps {
 const ExpandableSection = ({ title, description, content, image, actionButtonText }: ExpandableSectionProps) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
+  const scrollToForm = () => {
+    const formElement = document.getElementById('contact');
+    formElement?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -101,8 +106,8 @@ const ExpandableSection = ({ title, description, content, image, actionButtonTex
             className="bg-white rounded-b-2xl p-6 mt-[-20px] shadow-lg"
           >
             {content}
-            <AnimatedButton className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300">
-              {actionButtonText}
+            <AnimatedButton className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300" onClick={scrollToForm}>
+              Get Your Free Quote
             </AnimatedButton>
           </motion.div>
         )}
@@ -243,6 +248,24 @@ interface FormData {
   phone: string;
   coverageType: string;
 }
+
+// Create a reusable phone button component
+const PhoneButton = () => (
+  <motion.div 
+    whileHover={{ scale: 1.05 }}
+    className="inline-block"
+  >
+    <Button 
+      className="bg-red-600 hover:bg-red-700 text-white flex items-center gap-2 px-6 py-3 rounded-full shadow-lg"
+      asChild
+    >
+      <a href="tel:3097216540">
+        <Phone className="h-5 w-5" />
+        (309) 721-6540
+      </a>
+    </Button>
+  </motion.div>
+);
 
 export function RaquelMartinezInsuranceComponent() {
   const [isNavOpen, setIsNavOpen] = useState(false)
@@ -650,21 +673,11 @@ export function RaquelMartinezInsuranceComponent() {
                     Let Raquel protect your American dream on wheels!
                   </p>
                   <div className="space-y-4 text-gray-600">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <PhoneButton />
+                    </div>
                     <motion.div 
-                      className="flex items-center space-x-3"
-                      whileHover={{ scale: 1.05, color: "#ef4444" }}
-                    >
-                      <Phone className="h-5 w-5 text-red-600" />
-                      <a 
-                        href="tel:+15551234567" 
-                        className="hover:text-red-600 no-underline text-white"
-                        style={{ textDecoration: 'none' }}
-                      >
-                        (555) 123-4567
-                      </a>
-                    </motion.div>
-                    <motion.div 
-                      className="flex items-center space-x-3"
+                      className="flex items-center space-x-3 cursor-pointer"
                       whileHover={{ scale: 1.05, color: "#ef4444" }}
                     >
                       <Mail className="h-5 w-5 text-red-600" />
@@ -681,13 +694,6 @@ export function RaquelMartinezInsuranceComponent() {
                     >
                       <MessageSquare className="h-5 w-5 text-red-600" />
                       <span>24/7 American Support</span>
-                    </motion.div>
-                    <motion.div 
-                      className="flex items-center space-x-3"
-                      whileHover={{ scale: 1.05, color: "#ef4444" }}
-                    >
-                      <MapPin className="h-5 w-5 text-red-600" />
-                      <span>123 Trucker Lane, Anywhere, USA 12345</span>
                     </motion.div>
                   </div>
                 </div>
@@ -750,14 +756,7 @@ export function RaquelMartinezInsuranceComponent() {
               </h3>
               <p className="mb-4 text-gray-400">Protecting America's truckers from coast to coast. Get the coverage you deserve at rates you can afford!</p>
               <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
-                <AnimatedButton 
-                  variant="outline" 
-                  size="sm" 
-                  className="text-white border-red-600 hover:bg-red-700 hover:border-red-700 bg-white/10 backdrop-blur-sm"
-                >
-                  <Phone className="mr-2 h-5 w-5" />
-                  (555) 123-4567
-                </AnimatedButton>
+                <PhoneButton />
               </div>
             </div>
             <div>
