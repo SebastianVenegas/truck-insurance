@@ -657,11 +657,8 @@ export function RaquelMartinezInsuranceComponent() {
                       <Phone className="h-5 w-5 text-red-600" />
                       <a 
                         href="tel:+15551234567" 
-                        className="hover:text-red-600 cursor-pointer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          window.location.href = 'tel:+15551234567';
-                        }}
+                        className="hover:text-red-600 no-underline text-white"
+                        style={{ textDecoration: 'none' }}
                       >
                         (555) 123-4567
                       </a>
