@@ -581,6 +581,16 @@ export function RaquelMartinezInsuranceComponent() {
                 <AnimatedButton 
                   size="lg" 
                   className="mt-10 bg-amber-500 hover:bg-amber-600 text-gray-900 text-lg px-10 py-6 rounded-full"
+                  onClick={() => {
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                      });
+                    }
+                  }}
                 >
                   Discover the Raquel Advantage
                 </AnimatedButton>
@@ -747,7 +757,11 @@ export function RaquelMartinezInsuranceComponent() {
                     value={formData.coverageType}
                     onChange={(e) => setFormData({ ...formData, coverageType: e.target.value })}
                     required
-                    className="w-full rounded-md p-2"
+                    className="w-full rounded-md p-4 text-lg border-2 border-gray-300 focus:border-red-500 focus:ring-red-500 placeholder-gray-500 font-medium"
+                    style={{
+                      backgroundColor: 'white',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                    }}
                   />
                   <AnimatedButton 
                     type="submit"
