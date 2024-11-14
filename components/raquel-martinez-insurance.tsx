@@ -11,6 +11,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
 import { toast } from 'sonner'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 declare global {
   interface Window {
@@ -348,7 +349,7 @@ export function RaquelMartinezInsuranceComponent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+    <>
       <AnimatedLogo scrollYProgress={scrollYProgress} toggleNav={toggleNav} />
       <MobileNav isOpen={isNavOpen} toggleNav={toggleNav} />
 
@@ -800,6 +801,8 @@ export function RaquelMartinezInsuranceComponent() {
           </div>
         </div>
       </footer>
-    </div>
+
+      <SpeedInsights />
+    </>
   )
 }
