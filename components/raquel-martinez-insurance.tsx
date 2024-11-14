@@ -51,11 +51,6 @@ interface ExpandableSectionProps {
 const ExpandableSection = ({ title, description, content, image, actionButtonText }: ExpandableSectionProps) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const scrollToForm = () => {
-    const formElement = document.getElementById('contact');
-    formElement?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -106,7 +101,15 @@ const ExpandableSection = ({ title, description, content, image, actionButtonTex
             className="bg-white rounded-b-2xl p-6 mt-[-20px] shadow-lg"
           >
             {content}
-            <AnimatedButton className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300" onClick={scrollToForm}>
+            <AnimatedButton 
+              className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300" 
+              onClick={() => {
+                const formElement = document.querySelector('#contact-form');
+                if (formElement) {
+                  formElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
               Get Your Free Quote
             </AnimatedButton>
           </motion.div>
