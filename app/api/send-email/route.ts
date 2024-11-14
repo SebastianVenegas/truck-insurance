@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: 'inquiries@thecelestestudios.com',
+    pass: 'fmxm qgfu cyyo ybgp',
   },
 });
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     const { fullName, email, phone, coverageType } = body;
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: 'inquiries@thecelestestudios.com',
       to: 'venegassebastian0619@gmail.com',
       subject: 'New Trucking Insurance Quote Request',
       html: `

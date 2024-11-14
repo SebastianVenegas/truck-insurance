@@ -307,6 +307,11 @@ export function RaquelMartinezInsuranceComponent() {
     }
   };
 
+  const scrollToForm = () => {
+    const formElement = document.getElementById('contact');
+    formElement?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       <AnimatedLogo scrollYProgress={scrollYProgress} toggleNav={toggleNav} />
@@ -356,6 +361,7 @@ export function RaquelMartinezInsuranceComponent() {
               <AnimatedButton 
                 size="lg" 
                 className="bg-red-600 hover:bg-red-700 text-white text-lg px-10 py-6 rounded-[32px] shadow-lg"
+                onClick={scrollToForm}
               >
                 Get a Free Quote
               </AnimatedButton>
@@ -649,7 +655,16 @@ export function RaquelMartinezInsuranceComponent() {
                       whileHover={{ scale: 1.05, color: "#ef4444" }}
                     >
                       <Phone className="h-5 w-5 text-red-600" />
-                      <span>(555) 123-4567</span>
+                      <a 
+                        href="tel:+15551234567" 
+                        className="hover:text-red-600 cursor-pointer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.location.href = 'tel:+15551234567';
+                        }}
+                      >
+                        (555) 123-4567
+                      </a>
                     </motion.div>
                     <motion.div 
                       className="flex items-center space-x-3"
@@ -702,18 +717,14 @@ export function RaquelMartinezInsuranceComponent() {
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     required
                   />
-                  <select 
+                  <Input 
+                    type="text" 
+                    placeholder="Type of Coverage Needed" 
                     value={formData.coverageType}
                     onChange={(e) => setFormData({ ...formData, coverageType: e.target.value })}
                     required
                     className="w-full rounded-md p-2"
-                  >
-                    <option value="">Type of Coverage Needed</option>
-                    <option value="liability">Auto Liability</option>
-                    <option value="physical">Physical Damage</option>
-                    <option value="cargo">Cargo</option>
-                    <option value="all">All of the Above</option>
-                  </select>
+                  />
                   <AnimatedButton 
                     type="submit"
                     disabled={isSubmitting}
