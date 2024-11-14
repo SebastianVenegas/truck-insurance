@@ -104,9 +104,13 @@ const ExpandableSection = ({ title, description, content, image, actionButtonTex
             <AnimatedButton 
               className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300" 
               onClick={() => {
-                const formElement = document.querySelector('#contact-form');
-                if (formElement) {
-                  formElement.scrollIntoView({ behavior: 'smooth' });
+                const element = document.getElementById('contact');
+                if (element) {
+                  element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest'
+                  });
                 }
               }}
             >
@@ -335,7 +339,12 @@ export function RaquelMartinezInsuranceComponent() {
 
   const scrollToForm = () => {
     const formElement = document.getElementById('contact');
-    formElement?.scrollIntoView({ behavior: 'smooth' });
+    if (formElement) {
+      formElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   return (
@@ -387,9 +396,18 @@ export function RaquelMartinezInsuranceComponent() {
               <AnimatedButton 
                 size="lg" 
                 className="bg-red-600 hover:bg-red-700 text-white text-lg px-10 py-6 rounded-[32px] shadow-lg"
-                onClick={scrollToForm}
+                onClick={() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    element.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'start',
+                      inline: 'nearest'
+                    });
+                  }
+                }}
               >
-                Get a Free Quote
+                Get Your Free Quote
               </AnimatedButton>
               <AnimatedButton 
                 size="lg" 
