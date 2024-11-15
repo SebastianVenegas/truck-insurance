@@ -177,31 +177,67 @@ interface AnimatedLogoProps {
 const AnimatedLogo = ({ scrollYProgress, toggleNav }: AnimatedLogoProps) => {
   const y = useTransform(scrollYProgress, [0, 0.2], [0, -50])
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8])
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.98])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   return (
     <motion.div
       style={{ y, opacity, scale }}
-      className="fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-lg py-4 px-4 sm:px-6"
+      className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-800"
     >
-      <div className="container mx-auto flex justify-between items-center">
-        <motion.h1 
-          className="text-xl sm:text-2xl font-bold text-white flex items-center"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          <Flag className="w-6 h-6 mr-2 text-red-500" />
-          Raquel Martinez
-          <span className="block text-sm sm:text-base text-gray-300 ml-2">American Trucking Insurance</span>
-        </motion.h1>
-        <nav className="hidden md:flex space-x-6">
-          <NavLink href="#services" onClick={() => {}}>Services</NavLink>
-          <NavLink href="#about" onClick={() => {}}>About</NavLink>
-          <NavLink href="#testimonials" onClick={() => {}}>Testimonials</NavLink>
-          <NavLink href="#contact" onClick={() => {}}>Contact</NavLink>
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        <Link href="/">
+          <div className="flex items-center gap-3 transition-transform duration-300 ease-in-out hover:opacity-80">
+            <Flag className="w-6 h-6 text-red-500" />
+            <div className="flex flex-col">
+              <span className="text-2xl font-semibold tracking-tight text-white">
+                Raquel Martinez
+              </span>
+              <span className="text-base text-gray-400 tracking-wide">
+                Insurance & Trucking Solutions
+              </span>
+            </div>
+          </div>
+        </Link>
+        
+        <nav className="hidden md:flex items-center gap-8">
+          {[
+            { href: 'services', label: 'Services' },
+            { href: 'about', label: 'About' },
+            { href: 'testimonials', label: 'Testimonials' }
+          ].map(({ href, label }) => (
+            <button
+              key={href}
+              onClick={() => scrollToSection(href)}
+              className="text-white hover:text-red-400 transition-colors duration-300 ease-in-out text-lg"
+            >
+              {label}
+            </button>
+          ))}
+          <button
+            onClick={() => scrollToSection('contact')}
+            className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-full text-white transition-all duration-300 ease-in-out"
+          >
+            Contact
+          </button>
         </nav>
-        <Button className="md:hidden" variant="ghost" size="icon" onClick={toggleNav}>
-          <Menu className="h-6 w-6 text-white" />
+        
+        <Button 
+          className="md:hidden" 
+          variant="ghost" 
+          size="icon" 
+          onClick={toggleNav}
+        >
+          <Menu className="h-5 w-5 text-white" />
         </Button>
       </div>
     </motion.div>
@@ -214,20 +250,29 @@ interface NavLinkProps {
   onClick: () => void;
 }
 
-const NavLink = ({ href, children, onClick }: NavLinkProps) => (
-  <Link 
-    href={href} 
-    className="text-white hover:text-red-400 transition-colors flex items-center"
-    onClick={onClick}
-  >
-    <motion.div
-      whileHover={{ scale: 1.1 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+const NavLink = ({ href, children, onClick }: NavLinkProps) => {
+  const scrollToSection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const sectionId = href.replace('#', '');
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    if (onClick) onClick();
+  };
+
+  return (
+    <button 
+      onClick={scrollToSection}
+      className="text-white hover:text-red-400 transition-colors duration-300 ease-in-out flex items-center"
     >
       {children}
-    </motion.div>
-  </Link>
-)
+    </button>
+  );
+};
 
 interface AnimatedButtonProps {
   children: React.ReactNode;
