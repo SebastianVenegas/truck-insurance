@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Truck, Shield, FileText, Users, Phone, MessageSquare, Mail, X, CheckCircle, ChevronDown, ChevronUp, DollarSign, Clipboard, Award, Menu, Home, Info, Star, Send, Flag, MapPin } from 'lucide-react'
+import { Truck, Shield, FileText, Users, Phone, MessageSquare, Mail, X, CheckCircle, ChevronDown, ChevronUp, DollarSign, Clipboard, Award, Menu, Home, Info, Star, Send, Flag, MapPin, Globe } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
@@ -127,9 +127,11 @@ const ExpandableSection = ({ title, description, content, image, actionButtonTex
 interface MobileNavProps {
   isOpen: boolean;
   toggleNav: () => void;
+  language: 'en' | 'es';
+  toggleLanguage: () => void;
 }
 
-const MobileNav = ({ isOpen, toggleNav }: MobileNavProps) => {
+const MobileNav = ({ isOpen, toggleNav, language, toggleLanguage }: MobileNavProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -141,25 +143,47 @@ const MobileNav = ({ isOpen, toggleNav }: MobileNavProps) => {
           className="fixed inset-y-0 right-0 w-64 bg-gray-900 z-50 shadow-lg"
         >
           <div className="p-4 flex flex-col h-full">
-            <Button variant="ghost" size="icon" onClick={toggleNav} className="self-end mb-8 text-white">
-              <X className="h-6 w-6" />
-            </Button>
+            <div className="flex justify-between items-center mb-8">
+              <motion.button
+                onClick={toggleLanguage}
+                className="flex items-center gap-2 text-white hover:text-red-400 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Globe className="h-5 w-5" />
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={language}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-sm font-medium"
+                  >
+                    {language === 'en' ? 'ES' : 'EN'}
+                  </motion.span>
+                </AnimatePresence>
+              </motion.button>
+              <Button variant="ghost" size="icon" onClick={toggleNav} className="text-white">
+                <X className="h-6 w-6" />
+              </Button>
+            </div>
             <nav className="flex flex-col space-y-4">
               <NavLink href="#services" onClick={toggleNav}>
                 <Truck className="mr-2 h-5 w-5" />
-                Services
+                {language === 'en' ? 'Services' : 'Servicios'}
               </NavLink>
               <NavLink href="#about" onClick={toggleNav}>
                 <Info className="mr-2 h-5 w-5" />
-                About
+                {language === 'en' ? 'About' : 'Sobre Nosotros'}
               </NavLink>
               <NavLink href="#testimonials" onClick={toggleNav}>
                 <Star className="mr-2 h-5 w-5" />
-                Testimonials
+                {language === 'en' ? 'Testimonials' : 'Testimonios'}
               </NavLink>
               <NavLink href="#contact" onClick={toggleNav}>
                 <Send className="mr-2 h-5 w-5" />
-                Contact
+                {language === 'en' ? 'Contact' : 'Contacto'}
               </NavLink>
             </nav>
           </div>
@@ -172,9 +196,11 @@ const MobileNav = ({ isOpen, toggleNav }: MobileNavProps) => {
 interface AnimatedLogoProps {
   scrollYProgress: any;
   toggleNav: () => void;
+  language: 'en' | 'es';
+  toggleLanguage: () => void;
 }
 
-const AnimatedLogo = ({ scrollYProgress, toggleNav }: AnimatedLogoProps) => {
+const AnimatedLogo = ({ scrollYProgress, toggleNav, language, toggleLanguage }: AnimatedLogoProps) => {
   const y = useTransform(scrollYProgress, [0, 0.2], [0, -50])
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.98])
@@ -203,17 +229,37 @@ const AnimatedLogo = ({ scrollYProgress, toggleNav }: AnimatedLogoProps) => {
                 Raquel Martinez
               </span>
               <span className="text-base text-gray-400 tracking-wide">
-                Insurance & Trucking Solutions
+                {language === 'en' ? 'Insurance & Trucking Solutions' : 'Soluciones de Seguros y Transporte'}
               </span>
             </div>
           </div>
         </Link>
         
         <nav className="hidden md:flex items-center gap-8">
+          <motion.button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 text-white hover:text-red-400 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Globe className="h-5 w-5" />
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={language}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.2 }}
+                className="text-sm font-medium"
+              >
+                {language === 'en' ? 'ES' : 'EN'}
+              </motion.span>
+            </AnimatePresence>
+          </motion.button>
           {[
-            { href: 'services', label: 'Services' },
-            { href: 'about', label: 'About' },
-            { href: 'testimonials', label: 'Testimonials' }
+            { href: 'services', label: language === 'en' ? 'Services' : 'Servicios' },
+            { href: 'about', label: language === 'en' ? 'About' : 'Sobre Nosotros' },
+            { href: 'testimonials', label: language === 'en' ? 'Testimonials' : 'Testimonios' }
           ].map(({ href, label }) => (
             <button
               key={href}
@@ -227,7 +273,7 @@ const AnimatedLogo = ({ scrollYProgress, toggleNav }: AnimatedLogoProps) => {
             onClick={() => scrollToSection('contact')}
             className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-full text-white transition-all duration-300 ease-in-out"
           >
-            Contact
+            {language === 'en' ? 'Contact' : 'Contacto'}
           </button>
         </nav>
         
@@ -320,11 +366,245 @@ const PhoneButton = () => (
   </motion.div>
 );
 
+const translations = {
+  en: {
+    header: {
+      title: "Insurance & Trucking Solutions",
+      services: "Services",
+      about: "About",
+      testimonials: "Testimonials",
+      contact: "Contact"
+    },
+    hero: {
+      title: "American Trucking Insurance You Can Trust",
+      subtitle: "Protecting America's Truckers with Unbeatable Coverage and Rates",
+      quoteButton: "Get Your Free Quote",
+      chatButton: "Chat with Raquel",
+      serving: "Serving American truckers with pride since 2000"
+    },
+    services: {
+      title: "Comprehensive American Trucking Solutions",
+      subtitle: "Raquel Martinez brings over 20 years of experience in helping American truckers stay protected and compliant on the open road.",
+      insurance: {
+        title: "All-American Insurance",
+        description: "Tailored coverage for every American trucker and fleet",
+        content: {
+          title: "Protect Your American Dream on the Road",
+          items: [
+            "Primary Auto Liability: Affordable rates for essential coverage.",
+            "Physical Damage Coverage: Protect your rig with flexible options.",
+            "Cargo Insurance: Secure your loads with competitive rates!"
+          ]
+        }
+      },
+      compliance: {
+        title: "Coast-to-Coast Compliance",
+        description: "Navigate regulations across all 50 states with confidence",
+        content: {
+          title: "Keep Your Business Rolling from Sea to Shining Sea",
+          items: [
+            "USDOT Number: Quick and easy registration process.",
+            "MC Authority: Hassle-free operating authority setup.",
+            "IRP & IFTA: Simplified multi-state compliance."
+          ]
+        }
+      },
+      growth: {
+        title: "American Trucker Growth",
+        description: "Fuel your business expansion with cost-effective solutions",
+        content: {
+          title: "Grow Your Fleet, Expand Your Horizons",
+          items: [
+            "Zero Down Options: Get on the road without upfront costs.",
+            "Flexible Payments: Tailor your plan to your cash flow.",
+            "Fleet Discounts: Save more as you grow bigger."
+          ]
+        }
+      }
+    },
+    about: {
+      title: "How Raquel Keeps America's Truckers Rolling",
+      items: [
+        "20+ years serving American trucking industry",
+        "Same-Day Quotes – Get back on the road fast",
+        "Flexible Payment Options – Designed for truckers' cash flow",
+        "Multi-State Coverage – One-stop shop for nationwide operations",
+        "24/7 American-based support – We're always here for you"
+      ],
+      cta: "Discover the Raquel Advantage"
+    },
+    testimonials: {
+      title: "Real American Truckers, Real Savings",
+      items: [
+        {
+          text: "Raquel got me insured and compliant in all 48 states I drive through. Couldn't ask for better service!",
+          author: "John D., Owner-Operator from Texas"
+        },
+        {
+          text: "Best rates I've found in 15 years of trucking. Raquel truly understands what we need out here.",
+          author: "Sarah M., Fleet Manager from Ohio"
+        },
+        {
+          text: "The zero down payment option was a game-changer for my small fleet. Thanks, Raquel!",
+          author: "Mike R., Small Fleet Owner from California"
+        },
+        {
+          text: "Raquel's team was there for me 24/7 when I needed help with a claim. That's real American service.",
+          author: "Lisa K., Long-haul Driver from Montana"
+        },
+        {
+          text: "I saved 30% on my premiums and got better coverage. Raquel knows how to take care of us truckers.",
+          author: "Carlos G., Independent Trucker from Florida"
+        }
+      ]
+    },
+    contact: {
+      title: "Get Your Free American Trucker Quote!",
+      subtitle: "Ready to hit the road with peace of mind? Let Raquel protect your American dream on wheels!",
+      form: {
+        fullName: "Full Name",
+        email: "Email Address",
+        phone: "Phone Number",
+        coverage: "Type of Coverage Needed",
+        submit: "Get Your American Trucker Quote"
+      }
+    },
+    footer: {
+      title: "Raquel Martinez American Trucking Insurance",
+      subtitle: "Protecting America's truckers from coast to coast. Get the coverage you deserve at rates you can afford!",
+      copyright: "© 2023 Raquel Martinez American Trucking Insurance. All rights reserved."
+    }
+  },
+  es: {
+    header: {
+      title: "Soluciones de Seguros y Transporte",
+      services: "Servicios",
+      about: "Sobre Nosotros",
+      testimonials: "Testimonios",
+      contact: "Contacto"
+    },
+    hero: {
+      title: "Seguros de Transporte Americano en los que Puedes Confiar",
+      subtitle: "Protegiendo a los camioneros de Estados Unidos con coberturas y tarifas inigualables",
+      quoteButton: "Obtén tu Cotización Gratis",
+      chatButton: "Chatea con Raquel",
+      serving: "Sirviendo con orgullo a los camioneros de Estados Unidos desde el año 2000"
+    },
+    services: {
+      title: "Soluciones Integrales para el Transporte Americano",
+      subtitle: "Raquel Martínez aporta más de 20 años de experiencia ayudando a los camioneros de Estados Unidos a mantenerse protegidos y cumplir con las regulaciones en la carretera.",
+      insurance: {
+        title: "Seguros Todo Americano",
+        description: "Cobertura personalizada para cada camionero y flota en Estados Unidos",
+        content: {
+          title: "Protege tu Sueño Americano en la Carretera",
+          items: [
+            "Responsabilidad Civil Primaria: Tarifas accesibles para una cobertura esencial.",
+            "Cobertura de Daños Físicos: Protege tu camión con opciones flexibles.",
+            "Seguro de Carga: Asegura tus cargas con tarifas competitivas."
+          ]
+        }
+      },
+      compliance: {
+        title: "Cumplimiento en Todo el País",
+        description: "Navega por las regulaciones en los 50 estados con confianza",
+        content: {
+          title: "Mantén tu Negocio en Marcha de Costa a Costa",
+          items: [
+            "Número USDOT: Proceso de registro rápido y sencillo.",
+            "Autoridad MC: Configuración sin complicaciones de la autoridad operativa.",
+            "IRP e IFTA: Cumplimiento simplificado entre estados."
+          ]
+        }
+      },
+      growth: {
+        title: "Crecimiento para los Camioneros de Estados Unidos",
+        description: "Impulsa la expansión de tu negocio con soluciones rentables",
+        content: {
+          title: "Haz Crecer tu Flota, Expande tus Horizontes",
+          items: [
+            "Opciones Sin Pago Inicial: Ponte en la carretera sin costos anticipados.",
+            "Pagos Flexibles: Adapta tu plan a tu flujo de caja.",
+            "Descuentos para Flotas: Ahorra más a medida que creces."
+          ]
+        }
+      }
+    },
+    about: {
+      title: "Cómo Raquel Mantiene a los Camioneros de Estados Unidos en Movimiento",
+      items: [
+        "Más de 20 años sirviendo a la industria del transporte en Estados Unidos",
+        "Cotizaciones el Mismo Día – Vuelve a la carretera rápidamente",
+        "Opciones de Pago Flexibles – Diseñadas para el flujo de caja de los camioneros",
+        "Cobertura Multiestatal – Una solución integral para operaciones en todo el país",
+        "Soporte 24/7 con sede en Estados Unidos – Siempre estamos aquí para ti"
+      ],
+      cta: "Descubre la Ventaja de Raquel"
+    },
+    testimonials: {
+      title: "Camioneros Reales, Ahorros Reales",
+      items: [
+        {
+          text: "Raquel me consiguió seguro y cumplimiento en los 48 estados donde conduzco. ¡No podría pedir un mejor servicio!",
+          author: "John D., Propietario-Operador de Texas"
+        },
+        {
+          text: "Las mejores tarifas que he encontrado en 15 años de transporte. Raquel realmente entiende lo que necesitamos en la carretera.",
+          author: "Sarah M., Gerente de Flota de Ohio"
+        },
+        {
+          text: "La opción de cero pago inicial fue un cambio total para mi pequeña flota. ¡Gracias, Raquel!",
+          author: "Mike R., Propietario de Pequeña Flota de California"
+        },
+        {
+          text: "El equipo de Raquel estuvo ahí para mí 24/7 cuando necesité ayuda con un reclamo. Eso es verdadero servicio americano.",
+          author: "Lisa K., Conductora de Largo Recorrido de Montana"
+        },
+        {
+          text: "Ahorré un 30% en mis primas y obtuve una mejor cobertura. Raquel sabe cómo cuidarnos a los camioneros.",
+          author: "Carlos G., Camionero Independiente de Florida"
+        }
+      ]
+    },
+    contact: {
+      title: "¡Obtén tu Cotización Gratis para Camioneros Americanos!",
+      subtitle: "¿Listo para salir a la carretera con tranquilidad? ¡Deja que Raquel proteja tu sueño americano sobre ruedas!",
+      form: {
+        fullName: "Nombre Completo",
+        email: "Correo Electrónico",
+        phone: "Número de Teléfono",
+        coverage: "Tipo de Cobertura Necesaria",
+        submit: "Obtén tu Cotización para Camioneros Americanos"
+      }
+    },
+    footer: {
+      title: "Raquel Martínez Seguros de Transporte Americano",
+      subtitle: "Protegiendo a los camioneros de Estados Unidos de costa a costa. ¡Obtén la cobertura que mereces a tarifas que puedes pagar!",
+      copyright: "© 2023 Raquel Martínez Seguros de Transporte Americano. Todos los derechos reservados."
+    }
+  }
+};
+
+// Add this component near your other component definitions
+const AnimatedText = ({ children, className }: { children: React.ReactNode; className?: string }) => (
+  <motion.div
+    key={String(children)} // Trigger animation when content changes
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.3 }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
 export function RaquelMartinezInsuranceComponent() {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const { scrollYProgress } = useScroll()
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8])
+  const [language, setLanguage] = useState<'en' | 'es'>('en');
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -336,6 +616,7 @@ export function RaquelMartinezInsuranceComponent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const toggleNav = () => setIsNavOpen(!isNavOpen)
+  const toggleLanguage = () => setLanguage(prev => prev === 'en' ? 'es' : 'en');
 
   useEffect(() => {
     if (isNavOpen) {
@@ -395,8 +676,18 @@ export function RaquelMartinezInsuranceComponent() {
 
   return (
     <>
-      <AnimatedLogo scrollYProgress={scrollYProgress} toggleNav={toggleNav} />
-      <MobileNav isOpen={isNavOpen} toggleNav={toggleNav} />
+      <AnimatedLogo 
+        scrollYProgress={scrollYProgress} 
+        toggleNav={toggleNav} 
+        language={language}
+        toggleLanguage={toggleLanguage}
+      />
+      <MobileNav 
+        isOpen={isNavOpen} 
+        toggleNav={toggleNav}
+        language={language}
+        toggleLanguage={toggleLanguage}
+      />
 
       {/* Hero Section with Parallax */}
       <section className="relative min-h-screen overflow-hidden pt-20">
@@ -422,38 +713,39 @@ export function RaquelMartinezInsuranceComponent() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-center max-w-5xl"
           >
-            <motion.h2 
-              className="text-5xl sm:text-7xl md:text-8xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-amber-500 to-yellow-500"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 1 }}
-            >
-              American Trucking Insurance You Can Trust
-            </motion.h2>
-            <motion.p 
-              className="text-xl sm:text-2xl md:text-3xl mb-8 text-gray-300 font-light max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 1 }}
-            >
-              Protecting America's Truckers with Unbeatable Coverage and Rates
-            </motion.p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <AnimatePresence mode="wait">
+              <motion.h2 
+                key={language}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="text-5xl sm:text-7xl md:text-8xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-amber-500 to-yellow-500"
+              >
+                {translations[language].hero.title}
+              </motion.h2>
+            </AnimatePresence>
+            
+            <AnimatePresence mode="wait">
+              <motion.p 
+                key={language}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-xl sm:text-2xl md:text-3xl mb-8 text-gray-300 font-light max-w-3xl mx-auto"
+              >
+                {translations[language].hero.subtitle}
+              </motion.p>
+            </AnimatePresence>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <AnimatedButton 
                 size="lg" 
-                className="bg-red-600 hover:bg-red-700 text-white text-lg px-10 py-6 rounded-[32px] shadow-lg"
-                onClick={() => {
-                  const element = document.getElementById('contact');
-                  if (element) {
-                    element.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start',
-                      inline: 'nearest'
-                    });
-                  }
-                }}
+                className="bg-red-600 hover:bg-red-700 text-white text-lg px-10 py-6 rounded-[32px]"
+                onClick={scrollToForm}
               >
-                Get Your Free Quote
+                {translations[language].hero.quoteButton}
               </AnimatedButton>
               <AnimatedButton 
                 size="lg" 
@@ -465,17 +757,22 @@ export function RaquelMartinezInsuranceComponent() {
                   }
                 }}
               >
-                Chat with Raquel
+                {translations[language].hero.chatButton}
               </AnimatedButton>
             </div>
-            <motion.p 
-              className="mt-10 text-lg sm:text-xl text-gray-400 font-light"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5 }}
-            >
-              Serving American truckers with pride since 2000
-            </motion.p>
+
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={`${language}-serving`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mt-8 text-gray-400 text-lg"
+              >
+                {translations[language].hero.serving}
+              </motion.p>
+            </AnimatePresence>
           </motion.div>
         </div>
 
@@ -485,96 +782,92 @@ export function RaquelMartinezInsuranceComponent() {
       {/* Services Section */}
       <section id="services" className="py-24 px-4 bg-gray-100">
         <div className="container mx-auto">
-          <motion.h2 
-            className="text-4xl sm:text-5xl font-bold text-center mb-6 text-gray-900"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Comprehensive American Trucking Solutions
-          </motion.h2>
-          <motion.p 
-            className="text-xl sm:text-2xl text-center text-gray-600 mb-16 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Raquel Martinez brings over 20 years of experience in helping American truckers stay protected and compliant on the open road.
-          </motion.p>
+          <AnimatePresence mode="wait">
+            <motion.h2 
+              key={`${language}-services-title`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl sm:text-5xl font-bold text-center mb-6 text-gray-900"
+            >
+              {translations[language].services.title}
+            </motion.h2>
+          </AnimatePresence>
+          
+          <AnimatePresence mode="wait">
+            <motion.p 
+              key={`${language}-services-subtitle`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-xl sm:text-2xl text-center text-gray-600 mb-16 max-w-3xl mx-auto"
+            >
+              {translations[language].services.subtitle}
+            </motion.p>
+          </AnimatePresence>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             <ExpandableSection
-              title="All-American Insurance"
-              description="Tailored coverage for every American trucker and fleet"
+              title={translations[language].services.insurance.title}
+              description={translations[language].services.insurance.description}
               image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/openart-image_Vb5yVSAk_1731344877455_raw.jpg-eyfiAlMFih0j0lsHrKen79SXkUgUIS.jpeg"
               actionButtonText="Learn More About Coverage"
               content={
                 <div className="space-y-4 text-gray-700">
-                  <h4 className="text-xl font-semibold text-gray-900">Protect Your American Dream on the Road</h4>
+                  <h4 className="text-xl font-semibold text-gray-900">
+                    {translations[language].services.insurance.content.title}
+                  </h4>
                   <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <Shield className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>Primary Auto Liability:</strong> Affordable rates for essential coverage.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Truck className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>Physical Damage Coverage:</strong> Protect your rig with flexible options.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <FileText className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>Cargo Insurance:</strong> Secure your loads with competitive rates!</span>
-                    </li>
+                    {translations[language].services.insurance.content.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <Shield className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               }
             />
             <ExpandableSection
-              title="Coast-to-Coast Compliance"
-              description="Navigate regulations across all 50 states with confidence"
+              title={translations[language].services.compliance.title}
+              description={translations[language].services.compliance.description}
               image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/openart-image_vWJBE_EO_1731344877580_raw.jpg-y81CO8VwPHeT1aUTaiDZ3hFIZEEyOj.jpeg"
               actionButtonText="Explore Compliance Solutions"
               content={
                 <div className="space-y-4 text-gray-700">
-                  <h4 className="text-xl font-semibold text-gray-900">Keep Your Business Rolling from Sea to Shining Sea</h4>
+                  <h4 className="text-xl font-semibold text-gray-900">
+                    {translations[language].services.compliance.content.title}
+                  </h4>
                   <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <Clipboard className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>USDOT Number:</strong> Quick and easy registration process.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <FileText className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>MC Authority:</strong> Hassle-free operating authority setup.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <DollarSign className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>IRP & IFTA:</strong> Simplified multi-state compliance.</span>
-                    </li>
+                    {translations[language].services.compliance.content.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <Clipboard className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               }
             />
             <ExpandableSection
-              title="American Trucker Growth"
-              description="Fuel your business expansion with cost-effective solutions"
+              title={translations[language].services.growth.title}
+              description={translations[language].services.growth.description}
               image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/openart-image_ubf4h2G-_1731344878089_raw.jpg-XLkuMPwPkdw22fCcmC7MYAf5WvpvQy.jpeg"
               actionButtonText="Start Growing Your Fleet"
               content={
                 <div className="space-y-4 text-gray-700">
-                  <h4 className="text-xl font-semibold text-gray-900">Grow Your Fleet, Expand Your Horizons</h4>
+                  <h4 className="text-xl font-semibold text-gray-900">
+                    {translations[language].services.growth.content.title}
+                  </h4>
                   <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <DollarSign className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>Zero Down Options:</strong> Get on the road without upfront costs.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Clipboard className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>Flexible Payments:</strong> Tailor your plan to your cash flow.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Users className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
-                      <span><strong>Fleet Discounts:</strong> Save more as you grow bigger.</span>
-                    </li>
+                    {translations[language].services.growth.content.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <DollarSign className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-1" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               }
@@ -595,16 +888,10 @@ export function RaquelMartinezInsuranceComponent() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                How Raquel Keeps America's Truckers Rolling
+                {translations[language].about.title}
               </motion.h2>
               <div className="space-y-6">
-                {[
-                  "20+ years serving American trucking industry",
-                  "Same-Day Quotes – Get back on the road fast",
-                  "Flexible Payment Options – Designed for truckers' cash flow",
-                  "Multi-State Coverage – One-stop shop for nationwide operations",
-                  "24/7 American-based support – We're always here for you"
-                ].map((item, index) => (
+                {translations[language].about.items.map((item, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
@@ -638,7 +925,7 @@ export function RaquelMartinezInsuranceComponent() {
                     }
                   }}
                 >
-                  Discover the Raquel Advantage
+                  {translations[language].about.cta}
                 </AnimatedButton>
               </motion.div>
             </div>
@@ -673,7 +960,7 @@ export function RaquelMartinezInsuranceComponent() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Real American Truckers, Real Savings
+            {translations[language].testimonials.title}
           </motion.h2>
           <div className="relative overflow-hidden">
             <motion.div
@@ -681,28 +968,7 @@ export function RaquelMartinezInsuranceComponent() {
               animate={{ x: [0, -100 * 5, 0] }}
               transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
             >
-              {[
-                {
-                  text: "Raquel got me insured and compliant in all 48 states I drive through. Couldn't ask for better service!",
-                  author: "John D., Owner-Operator from Texas"
-                },
-                {
-                  text: "Best rates I've found in 15 years of trucking. Raquel truly understands what we need out here.",
-                  author: "Sarah M., Fleet Manager from Ohio"
-                },
-                {
-                  text: "The zero down payment option was a game-changer for my small fleet. Thanks, Raquel!",
-                  author: "Mike R., Small Fleet Owner from California"
-                },
-                {
-                  text: "Raquel's team was there for me 24/7 when I needed help with a claim. That's real American service.",
-                  author: "Lisa K., Long-haul Driver from Montana"
-                },
-                {
-                  text: "I saved 30% on my premiums and got better coverage. Raquel knows how to take care of us truckers.",
-                  author: "Carlos G., Independent Trucker from Florida"
-                }
-              ].map((testimonial, index) => (
+              {translations[language].testimonials.items.map((testimonial, index) => (
                 <motion.div
                   key={index}
                   className="w-[280px] sm:w-[300px] flex-shrink-0 mx-2 sm:mx-4"
@@ -741,13 +1007,12 @@ export function RaquelMartinezInsuranceComponent() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                Get Your Free American Trucker Quote!
+                {translations[language].contact.title}
               </motion.h2>
               <div className="grid md:grid-cols-2 gap-12">
                 <div>
                   <p className="text-gray-700 mb-6 text-lg">
-                    Ready to hit the road with peace of mind? 
-                    Let Raquel protect your American dream on wheels!
+                    {translations[language].contact.subtitle}
                   </p>
                   <div className="space-y-4 text-gray-600">
                     <div className="flex items-center space-x-3 mb-4">
@@ -775,47 +1040,65 @@ export function RaquelMartinezInsuranceComponent() {
                   </div>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <Input 
-                    type="text" 
-                    placeholder="Full Name" 
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    required
-                  />
-                  <Input 
-                    type="email" 
-                    placeholder="Email Address" 
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                  />
-                  <Input 
-                    type="tel" 
-                    placeholder="Phone Number" 
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    required
-                  />
-                  <Input 
-                    type="text" 
-                    placeholder="Type of Coverage Needed" 
-                    value={formData.coverageType}
-                    onChange={(e) => setFormData({ ...formData, coverageType: e.target.value })}
-                    required
-                    className="w-full rounded-md p-4 text-lg border-2 border-gray-300 focus:border-red-500 focus:ring-red-500 placeholder-gray-500 font-medium"
-                    style={{
-                      backgroundColor: 'white',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                    }}
-                  />
-                  <AnimatedButton 
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-lg font-semibold rounded-full"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Get Your American Trucker Quote'}
-                  </AnimatedButton>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`${language}-form`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-4"
+                    >
+                      <Input 
+                        type="text" 
+                        placeholder={translations[language].contact.form.fullName} 
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        required
+                        className="w-full rounded-md p-4 text-lg border-2 border-gray-300 focus:border-red-500 focus:ring-red-500 placeholder-gray-500"
+                      />
+                      <Input 
+                        type="email" 
+                        placeholder={translations[language].contact.form.email} 
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        required
+                        className="w-full rounded-md p-4 text-lg border-2 border-gray-300 focus:border-red-500 focus:ring-red-500 placeholder-gray-500"
+                      />
+                      <Input 
+                        type="tel" 
+                        placeholder={translations[language].contact.form.phone} 
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        required
+                        className="w-full rounded-md p-4 text-lg border-2 border-gray-300 focus:border-red-500 focus:ring-red-500 placeholder-gray-500"
+                      />
+                      <Input 
+                        type="text" 
+                        placeholder={translations[language].contact.form.coverage} 
+                        value={formData.coverageType}
+                        onChange={(e) => setFormData({ ...formData, coverageType: e.target.value })}
+                        required
+                        className="w-full rounded-md p-4 text-lg border-2 border-gray-300 focus:border-red-500 focus:ring-red-500 placeholder-gray-500"
+                      />
+                      <AnimatedButton 
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-red-600 hover:bg-red-700 text-white py-4 px-8 text-xl font-semibold rounded-full shadow-lg transition-all duration-300 whitespace-normal min-h-[60px] flex items-center justify-center"
+                        style={{
+                          fontSize: language === 'es' ? '1.1rem' : '1.25rem', // Slightly smaller font for Spanish
+                          lineHeight: '1.2',
+                        }}
+                      >
+                        {isSubmitting ? (
+                          language === 'en' ? 'Sending...' : 'Enviando...'
+                        ) : (
+                          translations[language].contact.form.submit
+                        )}
+                      </AnimatedButton>
+                    </motion.div>
+                  </AnimatePresence>
                 </form>
               </div>
             </CardContent>
@@ -833,15 +1116,19 @@ export function RaquelMartinezInsuranceComponent() {
             <div>
               <h3 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center">
                 <Flag className="w-6 h-6 mr-2 text-red-500" />
-                Raquel Martinez American Trucking Insurance
+                {translations[language].footer.title}
               </h3>
-              <p className="mb-4 text-gray-400">Protecting America's truckers from coast to coast. Get the coverage you deserve at rates you can afford!</p>
+              <p className="mb-4 text-gray-400">
+                {translations[language].footer.subtitle}
+              </p>
               <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
                 <PhoneButton />
               </div>
             </div>
             <div>
-              <p className="text-gray-400">© 2023 Raquel Martinez American Trucking Insurance. All rights reserved.</p>
+              <p className="text-gray-400">
+                {translations[language].footer.copyright}
+              </p>
             </div>
           </div>
         </div>
