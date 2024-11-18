@@ -376,20 +376,20 @@ const translations = {
       contact: "Contact"
     },
     hero: {
-      title: "American Trucking Insurance You Can Trust",
-      subtitle: "Protecting America's Truckers with Unbeatable Coverage and Rates",
+      title: "Get the Best Coverage and Save Big with Raquel Martinez!",
+      subtitle: "Protecting Truckers with Unbeatable Coverage and Rates",
       quoteButton: "Get Your Free Quote",
       chatButton: "Chat with Raquel",
-      serving: "Serving American truckers with pride since 2000"
+      serving: "Serving truckers with pride since 2000"
     },
     services: {
-      title: "Comprehensive American Trucking Solutions",
-      subtitle: "Raquel Martinez brings over 20 years of experience in helping American truckers stay protected and compliant on the open road.",
+      title: "Comprehensive Trucking Solutions",
+      subtitle: "Raquel Martinez brings over 20 years of experience helping truckers stay protected and compliant on the open road.",
       insurance: {
-        title: "All-American Insurance",
-        description: "Tailored coverage for every American trucker and fleet",
+        title: "Complete Insurance Coverage",
+        description: "Tailored coverage for every trucker and fleet",
         content: {
-          title: "Protect Your American Dream on the Road",
+          title: "Protect Your Business on the Road",
           items: [
             "Primary Auto Liability: Affordable rates for essential coverage.",
             "Physical Damage Coverage: Protect your rig with flexible options.",
@@ -398,10 +398,10 @@ const translations = {
         }
       },
       compliance: {
-        title: "Coast-to-Coast Compliance",
-        description: "Navigate regulations across all 50 states with confidence",
+        title: "Nationwide Compliance",
+        description: "Navigate regulations across all states with confidence",
         content: {
-          title: "Keep Your Business Rolling from Sea to Shining Sea",
+          title: "Keep Your Business Rolling Coast to Coast",
           items: [
             "USDOT Number: Quick and easy registration process.",
             "MC Authority: Hassle-free operating authority setup.",
@@ -410,7 +410,7 @@ const translations = {
         }
       },
       growth: {
-        title: "American Trucker Growth",
+        title: "Business Growth Solutions",
         description: "Fuel your business expansion with cost-effective solutions",
         content: {
           title: "Grow Your Fleet, Expand Your Horizons",
@@ -423,21 +423,21 @@ const translations = {
       }
     },
     about: {
-      title: "How Raquel Keeps America's Truckers Rolling",
+      title: "How Raquel Keeps Truckers Rolling",
       items: [
-        "20+ years serving American trucking industry",
+        "20+ years serving the trucking industry",
         "Same-Day Quotes – Get back on the road fast",
         "Flexible Payment Options – Designed for truckers' cash flow",
         "Multi-State Coverage – One-stop shop for nationwide operations",
-        "24/7 American-based support – We're always here for you"
+        "24/7 support – We're always here for you"
       ],
       cta: "Discover the Raquel Advantage"
     },
     testimonials: {
-      title: "Real American Truckers, Real Savings",
+      title: "Real Truckers, Real Savings",
       items: [
         {
-          text: "Raquel got me insured and compliant in all 48 states I drive through. Couldn't ask for better service!",
+          text: "Raquel got me insured and compliant in all states I drive through. Couldn't ask for better service!",
           author: "John D., Owner-Operator from Texas"
         },
         {
@@ -449,7 +449,7 @@ const translations = {
           author: "Mike R., Small Fleet Owner from California"
         },
         {
-          text: "Raquel's team was there for me 24/7 when I needed help with a claim. That's real American service.",
+          text: "Raquel's team was there for me 24/7 when I needed help with a claim. That's real service.",
           author: "Lisa K., Long-haul Driver from Montana"
         },
         {
@@ -459,128 +459,128 @@ const translations = {
       ]
     },
     contact: {
-      title: "Get Your Free American Trucker Quote!",
-      subtitle: "Ready to hit the road with peace of mind? Let Raquel protect your American dream on wheels!",
+      title: "Get Your Free Trucker Quote!",
+      subtitle: "Ready to hit the road with peace of mind? Let Raquel protect your business on wheels!",
       form: {
         fullName: "Full Name",
         email: "Email Address",
         phone: "Phone Number",
         coverage: "Type of Coverage Needed",
-        submit: "Get Your American Trucker Quote"
+        submit: "Get Your Trucker Quote"
       }
     },
     footer: {
-      title: "Raquel Martinez American Trucking Insurance",
-      subtitle: "Protecting America's truckers from coast to coast. Get the coverage you deserve at rates you can afford!",
-      copyright: "© 2023 Raquel Martinez American Trucking Insurance. All rights reserved."
+      title: "Raquel Martinez Trucking Insurance",
+      subtitle: "Protecting truckers coast to coast. Get the coverage you deserve at rates you can afford!",
+      copyright: "© 2023 Raquel Martinez Trucking Insurance. All rights reserved."
     }
   },
   es: {
     header: {
       title: "Soluciones de Seguros y Transporte",
       services: "Servicios",
-      about: "Sobre Nosotros",
+      about: "Acerca de",
       testimonials: "Testimonios",
       contact: "Contacto"
     },
     hero: {
-      title: "Seguros de Transporte Americano en los que Puedes Confiar",
-      subtitle: "Protegiendo a los camioneros de Estados Unidos con coberturas y tarifas inigualables",
-      quoteButton: "Obtén tu Cotización Gratis",
+      title: "¡Obtén la mejor cobertura y ahorra en grande con Raquel Martinez!",
+      subtitle: "Protegiendo a los transportistas con coberturas y tarifas inigualables",
+      quoteButton: "Solicita tu Cotización Gratis",
       chatButton: "Chatea con Raquel",
-      serving: "Sirviendo con orgullo a los camioneros de Estados Unidos desde el año 2000"
+      serving: "Sirviendo con orgullo a transportistas desde el año 2000"
     },
     services: {
-      title: "Soluciones Integrales para el Transporte Americano",
-      subtitle: "Raquel Martínez aporta más de 20 años de experiencia ayudando a los camioneros de Estados Unidos a mantenerse protegidos y cumplir con las regulaciones en la carretera.",
+      title: "Soluciones Integrales para el Transporte",
+      subtitle: "Raquel Martinez aporta más de 20 años de experiencia ayudando a transportistas a mantenerse protegidos y en cumplimiento en la carretera.",
       insurance: {
-        title: "Seguros Todo Americano",
-        description: "Cobertura personalizada para cada camionero y flota en Estados Unidos",
+        title: "Cobertura de Seguro Completa",
+        description: "Cobertura personalizada para cada transportista y flota",
         content: {
-          title: "Protege tu Sueño Americano en la Carretera",
+          title: "Protege tu Negocio en la Carretera",
           items: [
-            "Responsabilidad Civil Primaria: Tarifas accesibles para una cobertura esencial.",
+            "Responsabilidad Civil Primaria: Tarifas accesibles para cobertura esencial.",
             "Cobertura de Daños Físicos: Protege tu camión con opciones flexibles.",
-            "Seguro de Carga: Asegura tus cargas con tarifas competitivas."
+            "Seguro de Carga: Asegura tus mercancías con tarifas competitivas."
           ]
         }
       },
       compliance: {
-        title: "Cumplimiento en Todo el País",
-        description: "Navega por las regulaciones en los 50 estados con confianza",
+        title: "Cumplimiento Normativo a Nivel Nacional",
+        description: "Navega por las regulaciones de todos los estados con confianza",
         content: {
-          title: "Mantén tu Negocio en Marcha de Costa a Costa",
+          title: "Mantén tu Negocio Operativo de Costa a Costa",
           items: [
             "Número USDOT: Proceso de registro rápido y sencillo.",
-            "Autoridad MC: Configuración sin complicaciones de la autoridad operativa.",
-            "IRP e IFTA: Cumplimiento simplificado entre estados."
+            "Autoridad MC: Configuración de autoridad operativa sin complicaciones.",
+            "IRP e IFTA: Cumplimiento simplificado para múltiples estados."
           ]
         }
       },
       growth: {
-        title: "Crecimiento para los Camioneros de Estados Unidos",
+        title: "Soluciones para el Crecimiento Empresarial",
         description: "Impulsa la expansión de tu negocio con soluciones rentables",
         content: {
           title: "Haz Crecer tu Flota, Expande tus Horizontes",
           items: [
-            "Opciones Sin Pago Inicial: Ponte en la carretera sin costos anticipados.",
-            "Pagos Flexibles: Adapta tu plan a tu flujo de caja.",
-            "Descuentos para Flotas: Ahorra más a medida que creces."
+            "Opciones Sin Pago Inicial: Ponte en marcha sin costos por adelantado.",
+            "Pagos Flexibles: Adapta tu plan a tu flujo de efectivo.",
+            "Descuentos para Flotas: Ahorra más mientras creces."
           ]
         }
       }
     },
     about: {
-      title: "Cómo Raquel Mantiene a los Camioneros de Estados Unidos en Movimiento",
+      title: "Cómo Raquel Mantiene a los Transportistas en Marcha",
       items: [
-        "Más de 20 años sirviendo a la industria del transporte en Estados Unidos",
-        "Cotizaciones el Mismo Día – Vuelve a la carretera rápidamente",
-        "Opciones de Pago Flexibles – Diseñadas para el flujo de caja de los camioneros",
-        "Cobertura Multiestatal – Una solución integral para operaciones en todo el país",
-        "Soporte 24/7 con sede en Estados Unidos – Siempre estamos aquí para ti"
+        "Más de 20 años sirviendo a la industria del transporte",
+        "Cotizaciones el Mismo Día: Vuelve a la carretera rápidamente",
+        "Opciones de Pago Flexibles: Diseñadas para el flujo de efectivo de los transportistas",
+        "Cobertura Multiestatal: Todo en un solo lugar para operaciones a nivel nacional",
+        "Soporte 24/7: Siempre estamos aquí para ti"
       ],
       cta: "Descubre la Ventaja de Raquel"
     },
     testimonials: {
-      title: "Camioneros Reales, Ahorros Reales",
+      title: "Transportistas Reales, Ahorros Reales",
       items: [
         {
-          text: "Raquel me consiguió seguro y cumplimiento en los 48 estados donde conduzco. ¡No podría pedir un mejor servicio!",
+          text: "Raquel me aseguró y cumplió con las normativas de todos los estados por los que conduzco. No podría pedir mejor servicio.",
           author: "John D., Propietario-Operador de Texas"
         },
         {
-          text: "Las mejores tarifas que he encontrado en 15 años de transporte. Raquel realmente entiende lo que necesitamos en la carretera.",
+          text: "Las mejores tarifas que he encontrado en 15 años de transporte. Raquel realmente entiende lo que necesitamos.",
           author: "Sarah M., Gerente de Flota de Ohio"
         },
         {
-          text: "La opción de cero pago inicial fue un cambio total para mi pequeña flota. ¡Gracias, Raquel!",
+          text: "La opción sin pago inicial cambió el juego para mi pequeña flota. ¡Gracias, Raquel!",
           author: "Mike R., Propietario de Pequeña Flota de California"
         },
         {
-          text: "El equipo de Raquel estuvo ahí para mí 24/7 cuando necesité ayuda con un reclamo. Eso es verdadero servicio americano.",
-          author: "Lisa K., Conductora de Largo Recorrido de Montana"
+          text: "El equipo de Raquel estuvo disponible 24/7 cuando necesité ayuda con un reclamo. Eso es servicio real.",
+          author: "Lisa K., Conductora de Larga Distancia de Montana"
         },
         {
-          text: "Ahorré un 30% en mis primas y obtuve una mejor cobertura. Raquel sabe cómo cuidarnos a los camioneros.",
-          author: "Carlos G., Camionero Independiente de Florida"
+          text: "Ahorré un 30% en mis primas y obtuve una mejor cobertura. Raquel sabe cómo cuidar de nosotros, los transportistas.",
+          author: "Carlos G., Transportista Independiente de Florida"
         }
       ]
     },
     contact: {
-      title: "¡Obtén tu Cotización Gratis para Camioneros Americanos!",
-      subtitle: "¿Listo para salir a la carretera con tranquilidad? ¡Deja que Raquel proteja tu sueño americano sobre ruedas!",
+      title: "¡Obtén tu Cotización Gratis para Transportistas!",
+      subtitle: "¿Listo para salir a la carretera con tranquilidad? ¡Deja que Raquel proteja tu negocio sobre ruedas!",
       form: {
         fullName: "Nombre Completo",
         email: "Correo Electrónico",
         phone: "Número de Teléfono",
         coverage: "Tipo de Cobertura Necesaria",
-        submit: "Obtén tu Cotización para Camioneros Americanos"
+        submit: "Obtén tu Cotización para Transportistas"
       }
     },
     footer: {
-      title: "Raquel Martínez Seguros de Transporte Americano",
-      subtitle: "Protegiendo a los camioneros de Estados Unidos de costa a costa. ¡Obtén la cobertura que mereces a tarifas que puedes pagar!",
-      copyright: "© 2023 Raquel Martínez Seguros de Transporte Americano. Todos los derechos reservados."
+      title: "Raquel Martinez Seguros para Transporte",
+      subtitle: "Protegiendo a transportistas de costa a costa. ¡Obtén la cobertura que mereces a tarifas que puedes pagar!",
+      copyright: "© 2023 Raquel Martinez Seguros para Transporte. Todos los derechos reservados."
     }
   }
 };
@@ -780,7 +780,7 @@ export function RaquelMartinezInsuranceComponent() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 px-4 bg-gray-100">
+      <section id="services" className="py-20 px-4 bg-gray-100">
         <div className="container mx-auto">
           <AnimatePresence mode="wait">
             <motion.h2 
