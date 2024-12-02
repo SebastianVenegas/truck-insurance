@@ -1125,9 +1125,12 @@ export function RaquelMartinezInsuranceComponent() {
                 <PhoneButton />
               </div>
             </div>
-            <div>
+            <div className="flex flex-col justify-between">
               <p className="text-gray-400">
                 {translations[language].footer.copyright}
+              </p>
+              <p className="text-gray-400 mt-2">
+                Lic # 4320792
               </p>
             </div>
           </div>
