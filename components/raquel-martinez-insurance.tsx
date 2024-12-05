@@ -358,9 +358,9 @@ const PhoneButton = () => (
       className="bg-red-600 hover:bg-red-700 text-white flex items-center gap-2 px-6 py-3 rounded-full shadow-lg"
       asChild
     >
-      <a href="tel:3097216540">
+      <a href="tel:7609986123">
         <Phone className="h-5 w-5" />
-        (309) 721-6540
+        (760) 998-6123
       </a>
     </Button>
   </motion.div>
@@ -1023,7 +1023,7 @@ export function RaquelMartinezInsuranceComponent() {
                       whileHover={{ scale: 1.05, color: "#ef4444" }}
                     >
                       <Mail className="h-5 w-5 text-red-600" />
-                      <span>raquel@americantrucking.com</span>
+                      <span>raquel@alfainsurancesolutions.com</span>
                     </motion.div>
                     <motion.div 
                       className="flex items-center space-x-3 cursor-pointer"

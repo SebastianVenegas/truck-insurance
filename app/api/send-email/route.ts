@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
     const mailOptions = {
       from: 'inquiries@thecelestestudios.com',
-      to: 'venegassebastian0619@gmail.com',
+      to: 'Rmartinez2683@gmail.com',
       subject: 'New Trucking Insurance Quote Request',
       html: `
         <h2>New Quote Request</h2>
